@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import EmployeeList from './components/employees/EmployeeList';
+import UserList from './components/employees/UserList';
 import TeamList from './components/teams/TeamList';
+import DepartmentTree from './components/teams/DepartmentTree';
 import ProjectList from './components/projects/ProjectList';
 import AssignmentList from './components/assignments/AssignmentList';
 
@@ -16,6 +18,12 @@ function App() {
             <ul className="nav-links">
               <li>
                 <Link to="/">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+              <li>
+                <Link to="/departments">Departments</Link>
               </li>
               <li>
                 <Link to="/employees">Employees</Link>
@@ -35,6 +43,8 @@ function App() {
         <main className="App-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/departments" element={<DepartmentTree />} />
             <Route path="/employees" element={<EmployeeList />} />
             <Route path="/teams" element={<TeamList />} />
             <Route path="/projects" element={<ProjectList />} />
@@ -54,14 +64,14 @@ const Dashboard = () => {
       <p>Welcome to the Capacity Planning Tool. Use the navigation above to manage your resources.</p>
       <div className="dashboard-cards">
         <div className="card">
-          <h3>Employees</h3>
-          <p>Manage your employees and their team assignments</p>
-          <Link to="/employees" className="btn btn-primary">View Employees</Link>
+          <h3>Users</h3>
+          <p>Manage your users and their department assignments</p>
+          <Link to="/users" className="btn btn-primary">View Users</Link>
         </div>
         <div className="card">
-          <h3>Teams</h3>
-          <p>Organize teams and create hierarchical structures</p>
-          <Link to="/teams" className="btn btn-primary">View Teams</Link>
+          <h3>Departments</h3>
+          <p>Organize departments in a hierarchical structure</p>
+          <Link to="/departments" className="btn btn-primary">View Departments</Link>
         </div>
         <div className="card">
           <h3>Projects</h3>
@@ -70,7 +80,7 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <h3>Assignments</h3>
-          <p>Assign employees to projects with time allocations</p>
+          <p>Assign users to projects with time allocations</p>
           <Link to="/assignments" className="btn btn-primary">View Assignments</Link>
         </div>
       </div>
