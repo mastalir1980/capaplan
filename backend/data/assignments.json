@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "mdx5vmg0pb5bwc03u4b",
+    "employeeId": "mdx5i7r3jvawf83vadq",
+    "projectId": "mdx5v87jo08kw776tcs",
+    "year": 2025,
+    "month": 8,
+    "fteAllocation": 0.75,
+    "description": "Lead developer on e-commerce platform",
+    "createdAt": "2025-08-04T13:43:57.792Z"
+  }
+]

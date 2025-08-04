@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "mdx5v87jo08kw776tcs",
+    "name": "E-commerce Platform",
+    "description": "Building new e-commerce platform",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "status": "active",
+    "createdAt": "2025-08-04T13:43:39.343Z"
+  }
+]
