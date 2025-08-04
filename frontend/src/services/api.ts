@@ -97,3 +97,8 @@ export const updateAssignment = async (id: string, assignmentData: any) => {
 export const deleteAssignment = async (id: string) => {
   return axios.delete(`${API_URL}/assignments/${id}`);
 };
+
+// Capacity planning API calls
+export const getCapacityOverview = async (year: number, month: number) => {
+  return axios.get(`${API_URL}/assignments/capacity/${year}/${month}`);
+};
