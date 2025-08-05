@@ -19,13 +19,17 @@ app.get('/api/health', (req, res) => {
 
 // Import routes
 const employeeRoutes = require('./routes/employee.routes');
+const userRoutes = require('./routes/user.routes');
 const teamRoutes = require('./routes/team.routes');
+const departmentRoutes = require('./routes/department.routes');
 const projectRoutes = require('./routes/project.routes');
 const assignmentRoutes = require('./routes/assignment.routes');
 
 // Use routes
 app.use('/api/employees', employeeRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/teams', teamRoutes);
+app.use('/api/departments', departmentRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/assignments', assignmentRoutes);
 

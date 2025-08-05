@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../../config/config';
 import './UserList.css';
 
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  position: string;
+  departmentId: string;
+}
+
+interface Department {
+  _id: string;
+  name: string;
+}
+
 const UserList = () => {
-  const [users, setUsers] = useState([]);
-  const [departments, setDepartments] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newUser, setNewUser] = useState({
     name: '',
@@ -21,8 +35,8 @@ const UserList = () => {
       try {
         setLoading(true);
         const [usersResponse, departmentsResponse] = await Promise.all([
-          axios.get('/api/users'),
-          axios.get('/api/departments')
+          axios.get(`${config.API_BASE_URL}/api/users`),
+          axios.get(`${config.API_BASE_URL}/api/departments`)
         ]);
         setUsers(usersResponse.data);
         setDepartments(departmentsResponse.data);
@@ -38,7 +52,7 @@ const UserList = () => {
   }, []);
 
   // Handle input change for new user form
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setNewUser({
       ...newUser,
@@ -47,10 +61,10 @@ const UserList = () => {
   };
 
   // Handle form submission for new user
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users', newUser);
+      const response = await axios.post(`${config.API_BASE_URL}/api/users`, newUser);
       setUsers([...users, response.data]);
       setNewUser({
         name: '',
@@ -66,10 +80,10 @@ const UserList = () => {
   };
 
   // Handle user deletion
-  const handleDelete = async (userId) => {
+  const handleDelete = async (userId: string) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`/api/users/${userId}`);
+        await axios.delete(`${config.API_BASE_URL}/api/users/${userId}`);
         setUsers(users.filter(user => user._id !== userId));
       } catch (err) {
         setError('Failed to delete user. Please try again later.');
@@ -79,7 +93,7 @@ const UserList = () => {
   };
 
   // Find department name by ID
-  const getDepartmentName = (departmentId) => {
+  const getDepartmentName = (departmentId: string) => {
     const department = departments.find(dept => dept._id === departmentId);
     return department ? department.name : 'Unknown Department';
   };

@@ -1,11 +1,9 @@
-const User = require('../models/user.model');
-const Department = require('../models/department.model');
-const mongoose = require('mongoose');
+const db = require('../data/jsonDatabase');
 
 // Get all departments
 exports.getAllDepartments = async (req, res) => {
   try {
-    const departments = await Department.find();
+    const departments = await db.getDepartments();
     res.status(200).json(departments);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -15,7 +13,7 @@ exports.getAllDepartments = async (req, res) => {
 // Get department by ID
 exports.getDepartmentById = async (req, res) => {
   try {
-    const department = await Department.findById(req.params.id);
+    const department = await db.getDepartmentById(req.params.id);
     if (!department) {
       return res.status(404).json({ message: 'Department not found' });
     }
@@ -28,8 +26,19 @@ exports.getDepartmentById = async (req, res) => {
 // Get department tree
 exports.getDepartmentTree = async (req, res) => {
   try {
-    const rootId = req.params.id || null;
-    const tree = await Department.getTree(rootId);
+    const departments = await db.getDepartments();
+    
+    // Build hierarchical tree structure
+    const buildTree = (parentId = null) => {
+      return departments
+        .filter(dept => dept.parentId === parentId)
+        .map(dept => ({
+          ...dept,
+          children: buildTree(dept._id)
+        }));
+    };
+    
+    const tree = buildTree();
     res.status(200).json(tree);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -41,19 +50,18 @@ exports.createDepartment = async (req, res) => {
   try {
     // Validate parent department if provided
     if (req.body.parentId) {
-      const parentExists = await Department.findById(req.body.parentId);
+      const parentExists = await db.getDepartmentById(req.body.parentId);
       if (!parentExists) {
         return res.status(400).json({ message: 'Parent department not found' });
       }
     }
 
-    const department = new Department({
+    const newDepartment = await db.addDepartment({
       name: req.body.name,
       description: req.body.description,
       parentId: req.body.parentId || null
     });
 
-    const newDepartment = await department.save();
     res.status(201).json(newDepartment);
   } catch (error) {
     res.status(400).json({ message: error.message });

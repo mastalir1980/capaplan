@@ -1,0 +1,188 @@
+// Mock test data for demonstration
+const departments = [
+  {
+    _id: '673d5f8a1234567890abcdef',
+    name: 'Engineering',
+    description: 'Software development and technical operations',
+    parentId: null
+  },
+  {
+    _id: '673d5f8a1234567890abcde0',
+    name: 'Frontend Team',
+    description: 'UI/UX and frontend development',
+    parentId: '673d5f8a1234567890abcdef'
+  },
+  {
+    _id: '673d5f8a1234567890abcde1',
+    name: 'Backend Team',
+    description: 'Server-side development and APIs',
+    parentId: '673d5f8a1234567890abcdef'
+  },
+  {
+    _id: '673d5f8a1234567890abcde2',
+    name: 'Marketing',
+    description: 'Product marketing and customer engagement',
+    parentId: null
+  },
+  {
+    _id: '673d5f8a1234567890abcde3',
+    name: 'Sales',
+    description: 'Customer acquisition and business development',
+    parentId: null
+  },
+  {
+    _id: '673d5f8a1234567890abcde4',
+    name: 'DevOps',
+    description: 'Infrastructure and deployment operations',
+    parentId: '673d5f8a1234567890abcdef'
+  }
+];
+
+const users = [
+  {
+    _id: '673d5f8a1234567890abcd01',
+    name: 'Jan Novák',
+    email: 'jan.novak@company.com',
+    position: 'Senior Frontend Developer',
+    departmentId: '673d5f8a1234567890abcde0'
+  },
+  {
+    _id: '673d5f8a1234567890abcd02',
+    name: 'Marie Svobodová',
+    email: 'marie.svobodova@company.com',
+    position: 'Backend Team Lead',
+    departmentId: '673d5f8a1234567890abcde1'
+  },
+  {
+    _id: '673d5f8a1234567890abcd03',
+    name: 'Petr Dvořák',
+    email: 'petr.dvorak@company.com',
+    position: 'DevOps Engineer',
+    departmentId: '673d5f8a1234567890abcde4'
+  },
+  {
+    _id: '673d5f8a1234567890abcd04',
+    name: 'Anna Černá',
+    email: 'anna.cerna@company.com',
+    position: 'Marketing Manager',
+    departmentId: '673d5f8a1234567890abcde2'
+  },
+  {
+    _id: '673d5f8a1234567890abcd05',
+    name: 'Tomáš Procházka',
+    email: 'tomas.prochazka@company.com',
+    position: 'Sales Representative',
+    departmentId: '673d5f8a1234567890abcde3'
+  },
+  {
+    _id: '673d5f8a1234567890abcd06',
+    name: 'Lukáš Fiala',
+    email: 'lukas.fiala@company.com',
+    position: 'Junior Frontend Developer',
+    departmentId: '673d5f8a1234567890abcde0'
+  },
+  {
+    _id: '673d5f8a1234567890abcd07',
+    name: 'Kateřina Horáková',
+    email: 'katerina.horakova@company.com',
+    position: 'Backend Developer',
+    departmentId: '673d5f8a1234567890abcde1'
+  },
+  {
+    _id: '673d5f8a1234567890abcd08',
+    name: 'Martin Krejčí',
+    email: 'martin.krejci@company.com',
+    position: 'Senior Sales Manager',
+    departmentId: '673d5f8a1234567890abcde3'
+  }
+];
+
+const projects = [
+  {
+    _id: '673d5f8a1234567890abcd11',
+    name: 'E-commerce Platform Redesign',
+    description: 'Complete redesign of the company e-commerce platform',
+    startDate: '2024-01-15',
+    endDate: '2024-06-30',
+    status: 'active'
+  },
+  {
+    _id: '673d5f8a1234567890abcd12',
+    name: 'Mobile App Development',
+    description: 'Native mobile application for iOS and Android',
+    startDate: '2024-03-01',
+    endDate: '2024-09-15',
+    status: 'active'
+  },
+  {
+    _id: '673d5f8a1234567890abcd13',
+    name: 'API Migration',
+    description: 'Migrate legacy APIs to new microservices architecture',
+    startDate: '2024-02-01',
+    endDate: '2024-05-31',
+    status: 'active'
+  },
+  {
+    _id: '673d5f8a1234567890abcd14',
+    name: 'Marketing Campaign Q2',
+    description: 'Digital marketing campaign for Q2 product launch',
+    startDate: '2024-04-01',
+    endDate: '2024-06-30',
+    status: 'planned'
+  }
+];
+
+const assignments = [
+  {
+    _id: '673d5f8a1234567890abcd21',
+    employeeId: '673d5f8a1234567890abcd01',
+    projectId: '673d5f8a1234567890abcd11',
+    startDate: '2024-01-15',
+    endDate: '2024-06-30',
+    allocationPercentage: 80,
+    role: 'Frontend Lead'
+  },
+  {
+    _id: '673d5f8a1234567890abcd22',
+    employeeId: '673d5f8a1234567890abcd02',
+    projectId: '673d5f8a1234567890abcd13',
+    startDate: '2024-02-01',
+    endDate: '2024-05-31',
+    allocationPercentage: 100,
+    role: 'Technical Lead'
+  },
+  {
+    _id: '673d5f8a1234567890abcd23',
+    employeeId: '673d5f8a1234567890abcd06',
+    projectId: '673d5f8a1234567890abcd11',
+    startDate: '2024-01-15',
+    endDate: '2024-06-30',
+    allocationPercentage: 60,
+    role: 'Frontend Developer'
+  },
+  {
+    _id: '673d5f8a1234567890abcd24',
+    employeeId: '673d5f8a1234567890abcd07',
+    projectId: '673d5f8a1234567890abcd13',
+    startDate: '2024-02-01',
+    endDate: '2024-05-31',
+    allocationPercentage: 75,
+    role: 'Backend Developer'
+  },
+  {
+    _id: '673d5f8a1234567890abcd25',
+    employeeId: '673d5f8a1234567890abcd04',
+    projectId: '673d5f8a1234567890abcd14',
+    startDate: '2024-04-01',
+    endDate: '2024-06-30',
+    allocationPercentage: 90,
+    role: 'Marketing Lead'
+  }
+];
+
+module.exports = {
+  departments,
+  users,
+  projects,
+  assignments
+};

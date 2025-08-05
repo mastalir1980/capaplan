@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../../config/config';
 import './DepartmentTree.css';
 
 interface Department {
@@ -26,7 +27,7 @@ const DepartmentTree: React.FC = () => {
     const fetchDepartments = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/departments/tree');
+        const response = await axios.get(`${config.API_BASE_URL}/api/departments/tree`);
         setDepartments(response.data);
         setLoading(false);
       } catch (err) {
@@ -52,9 +53,9 @@ const DepartmentTree: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('/api/departments', newDepartment);
-      // Refresh department tree after adding new department
-      const response = await axios.get('/api/departments/tree');
+      await axios.post(`${config.API_BASE_URL}/api/departments`, newDepartment);
+      // Refetch departments
+      const response = await axios.get(`${config.API_BASE_URL}/api/departments/tree`);
       setDepartments(response.data);
       setNewDepartment({
         name: '',
